@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arif Bimantara Management (ABM) Law Office & PT Sjava Barokah Makmur</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Color Palette */
+        :root {
+            --primary-dark: #111827;
+            --accent-gold: #c5a059;
+            --secondary-blue: #0f4c81;
+            --card-bg: #ffffff;
+            --text-gray: #4b5563;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: var(--primary-dark);
+            border-bottom: 3px solid var(--accent-gold);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .navbar .logo-title {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar .logo-title span {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 25px;
+        }
+
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Dropdown Menu Akses Cepat (Titik Tiga) */
+        .menu-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0 10px;
+            line-height: 1;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--primary-dark);
+            min-width: 280px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--accent-gold);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #1f2937;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        /* Layout Main Spacer */
+        .main-container {
+            margin-top: 75px;
+        }
+
+        /* Section Global Settings */
+        .section-block {
+            padding: 90px 8%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .title-main {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .title-main::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-gold);
+        }
+
+        .subtitle-main {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 45px;
+            font-style: italic;
+        }
+
+        /* HALAMAN 1: Penjelasan Kantor & Jasa Kami (Hero / Intro) */
+        #halaman1 {
+            background: linear-gradient(rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.95)), 
+                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 110px 6%;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-logo-container {
+            margin-bottom: 25px;
+            max-width: 240px;
+            width: 100%;
+        }
+
+        .main-logo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        #halaman1 h1 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        #halaman1 h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 35px;
+            color: #e5e7eb;
+            letter-spacing: 2px;
+        }
+
+        .intro-box {
+            max-width: 850px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f3f4f6;
+            text-align: center;
+        }
+
+        .intro-box p {
+            margin-bottom: 15px;
+        }
+
+        /* HALAMAN 2: Detail Layanan Hukum (Litigasi & Bisnis) */
+        #halaman2 {
+            background-color: #ffffff;
+        }
+
+        .services-layout {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 20px;
+        }
+
+        .service-column {
+            display: table-cell;
+            background-color: #f9fafb;
+            padding: 35px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--accent-gold);
+            vertical-align: top;
+        }
+
+        .service-column h3 {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .service-column p {
+            color: var(--text-gray);
+            font-size: 0.98rem;
+            text-align: justify;
+        }
+
+        /* HALAMAN 3: Galeri Foto Hukum & Edukasi */
+        #halaman3 {
+            background-color: #f9fafb;
+        }
+
+        .gallery-grid {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 15px;
+        }
+
+        .gallery-item {
+            display: table-cell;
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            vertical-align: top;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* HALAMAN 4: Kemitraan PT SJAVA BAROKAH MAKMUR (Haji & Umroh) */
+        #halaman4 {
+            background-color: var(--secondary-blue);
+            color: #ffffff;
+        }
+
+        #halaman4 .title-main { color: #ffffff; }
+        #halaman4 .title-main::after { background-color: #ffffff; }
+        #halaman4 .subtitle-main { color: #e5e7eb; }
+
+        .partner-wrapper {
+            display: table;
+            width: 100%;
+        }
+
+        .partner-left {
+            display: table-cell;
+            width: 35%;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .partner-logo-container {
+            max-width: 240px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .partner-logo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .partner-right {
+            display: table-cell;
+            width: 65%;
+            padding-left: 40px;
+            vertical-align: top;
+        }
+
+        .partner-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Gambar Pendukung Travel */
+        .travel-banner-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* HALAMAN 5: Kontak & Alamat Resmi */
+        #halaman5 {
+            background-color: #ffffff;
+        }
+
+        .contact-layout {
+            display: table;
+            width: 100%;
+        }
+
+        .info-cell {
+            display: table-cell;
+            width: 50%;
+            padding-right: 40px;
+            vertical-align: top;
+        }
+
+        .map-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .contact-card {
+            margin-bottom: 25px;
+        }
+
+        .contact-card h4 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .contact-card p {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+        }
+
+        .wa-button-link {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-right: 10px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .wa-button-link:hover {
+            background-color: #128c7e;
+        }
+
+        .map-placeholder-box {
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-gray);
+            padding: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #9ca3af;
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 3px solid var(--accent-gold);
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        function toggleDropdownMenu() {
+            var menu = document.getElementById("navDropdownMenu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].style.display === "block") {
+                        dropdowns[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-title">ABM <span>MANAGEMENT</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#halaman1" class="nav-link">Tentang Kami</a></li>
+            <li class="nav-item"><a href="#halaman2" class="nav-link">Jasa Hukum</a></li>
+            <li class="nav-item"><a href="#halaman3" class="nav-link">Galeri Hukum</a></li>
+            <li class="nav-item"><a href="#halaman4" class="nav-link">Kemitraan Haji Umroh</a></li>
+            <li class="nav-item"><a href="#halaman5" class="nav-link">Kontak & Alamat</a></li>
+        </ul>
+        <div class="menu-dropdown">
+            <button class="dropdown-btn" onclick="toggleDropdownMenu()">&#8942;</button>
+            <div id="navDropdownMenu" class="dropdown-content">
+                <a href="#halaman1">Halaman 1: Tentang Kantor ABM</a>
+                <a href="#halaman2">Halaman 2: Layanan & Jasa Hukum</a>
+                <a href="#halaman3">Halaman 3: Galeri Dokumentasi Hukum</a>
+                <a href="#halaman4">Halaman 4: Biro Haji PT Sjava Barokah</a>
+                <a href="#halaman5">Halaman 5: Kontak & Alamat Kantor</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+
+        <section id="halaman1">
+            <div class="main-logo-container">
+                <img src="file_000000006f2872079b36b4bfc265fd4f.png" alt="Logo Arif Bimantara Management">
+            </div>
+            <h1>ARIF BIMANTARA MANAGEMENT (ABM)</h1>
+            <h2>Law Office & Legal Consultant</h2>
+            <div class="intro-box">
+                <p>
+                    Selamat datang di website resmi <strong>Arif Bimantara Management (ABM) Law Office</strong>. Kami hadir sebagai lembaga penyedia jasa konsultasi hukum terpercaya, berintegritas, dan berkomitmen tinggi untuk menangani segala bentuk permasalahan hukum Anda.
+                </p>
+                <p>
+                    Dengan mengutamakan profesionalitas serta pemahaman regulasi perundang-undangan yang komprehensif, kami siap mendampingi masyarakat dan pelaku usaha dalam mencari keadilan serta menegakkan kepastian hukum.
+                </p>
+            </div>
+        </section>
+
+        <section id="halaman2" class="section-block">
+            <h2 class="title-main">Jasa & Layanan Hukum</h2>
+            <p class="subtitle-main">Komitmen penanganan perkara secara taktis, legal, dan transparan</p>
+            
+            <div class="services-layout">
+                <div class="service-column">
+                    <h3>⚖️ Hukum Litigasi (Persidangan)</h3>
+                    <p>Pendampingan hukum penuh untuk penyelesaian sengketa di dalam ruang sidang pengadilan. Meliputi pembelaan perkara hukum pidana, gugatan perdata sengketa tanah, waris, perkawinan, tata usaha negara, hingga kasus perselisihan niaga usaha.</p>
+                </div>
+                <div class="service-column">
+                    <h3>🤝 Hukum Non-Litigasi (Luar Sidang)</h3>
+                    <p>Solusi alternatif penyelesaian sengketa hukum di luar jalur peradilan melalui proses mediasi, negosiasi, pembuatan draf perjanjian kontrak kerja komersial (legal drafting), serta pemberian analisis pendapat hukum tertulis (legal opinion).</p>
+                </div>
+                <div class="service-column">
+                    <h3>🏢 Legalitas & Kepatuhan Usaha</h3>
+                    <p>Bantuan pengurusan legalitas pendirian badan usaha/korporasi, perizinan investasi modal, audit kepatuhan regulasi bisnis, serta penanganan kasus sengketa ketenagakerjaan secara tepat guna.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="halaman3" class="section-block">
+            <h2 class="title-main">Dokumentasi & Ilustrasi Hukum</h2>
+            <p class="subtitle-main">Representasi penegakan keadilan dan kepatuhan hukum</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=400" alt="Palu Sidang Hakim">
+                    <div class="gallery-caption">Keadilan Hukum di Pengadilan</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&q=80&w=400" alt="Buku Hukum">
+                    <div class="gallery-caption">Konsultasi & Kajian Regulasi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=400" alt="Perjanjian Kontrak">
+                    <div class="gallery-caption">Penandatanganan Kontrak Bisnis</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="halaman4" class="section-block">
+            <div class="partner-wrapper">
+                <div class="partner-left">
+                    <div class="partner-logo-container">
+                        <img src="IMG-20260609-WA0000.jpg" alt="Logo PT Sjava Barokah Makmur">
+                    </div>
+                </div>
+                <div class="partner-right">
+                    <h2 class="title-main">Mitra Perjalanan Haji & Umroh</h2>
+                    <p class="subtitle-main">PT. Sjava Barokah Makmur — Penyelenggara Resmi PPIU 617 / PIHK 584</p>
+                    <p class="partner-desc">
+                        Sebagai wujud integrasi layanan bagi masyarakat, Kantor Hukum ABM bekerja sama secara sinergis dengan <strong>PT. Sjava Barokah Makmur</strong>. Biro perjalanan ibadah Haji Khusus dan Umroh yang sah, tepercaya, serta mengantongi izin operasional resmi dari Kementerian Agama RI.
+                    </p>
+                    <p class="partner-desc" style="font-size: 1rem;">
+                        Kami menjamin kenyamanan, keamanan legalitas dokumen jamaah (Visa & Paspor), keberangkatan yang terjadwal pasti, serta bimbingan ibadah yang muttabarah sesuai tuntunan sunnah selama di Tanah Suci.
+                    </p>
+                    <img class="travel-banner-img" src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&q=80&w=800" alt="Ilustrasi Ka'bah Makkah">
+                </div>
+            </div>
+        </section>
+
+        <section id="halaman5" class="section-block">
+            <h2 class="title-main">Kontak & Alamat Kantor</h2>
+            <p class="subtitle-main">Hubungi kami langsung atau kunjungi kantor operasional kami di Jombang</p>
+            
+            <div class="contact-layout">
+                <div class="info-cell">
+                    <div class="contact-card">
+                        <h4>📍 Lokasi Kantor:</h4>
+                        <p><strong>Jl. Sultan Agung, Kelurahan Jelakombo, RT 003 RW 002,<br>Gang 7 No. 7, Kabupaten Jombang, Jawa Timur — 61412</strong></p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>📞 WhatsApp Manajemen Kantor:</h4>
+                        <p>Dapatkan respons konsultasi operasional cepat dari staf kami:</p>
+                        
+                        <a href="https://wa.me/6281335984528" target="_blank" class="wa-button-link">📲 Kontak Hubungan 1 (Irgi)</a>
+                        <a href="https://wa.me/6281915810880" target="_blank" class="wa-button-link" style="background-color: #007bff; box-shadow: 0 4px 10px rgba(0,123,255,0.2);">📲 Kontak Hubungan 2 (Yanuar)</a>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-placeholder-box">
+                        <div>
+                            <strong style="color: var(--primary-dark); display:block; margin-bottom: 5px; font-size: 1.1rem;">🗺️ Peta Alamat Jombang</strong>
+                            <span>Jl. Sultan Agung Gg. 7 No. 7, Jelakombo, Jombang</span>
+                            <p style="font-size: 0.85rem; margin-top: 15px; font-style:italic;">(Siap untuk disematkan kode sematan iframe Google Maps interaktif Anda)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Arif Bimantara Management (ABM) Law Office. Seluruh Hak Cipta Dilindungi.</p>
+        <p style="font-size: 0.8rem; margin-top: 6px; color: #9ca3af;">Mitra Perjalanan Resmi: PT Sjava Barokah Makmur (PPIU 617 - PIHK 584)</p>
+    </footer>
+
+</body>
+</html>
